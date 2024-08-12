@@ -1,9 +1,23 @@
-import React from 'react'
+import React from "react";
 
-function DoctorCard() {
+const DoctorCard = ({ doctor, onEdit, onDelete }) => {
+  const { name, specialty } = doctor;
+
   return (
-    <div>DoctorCard</div>
-  )
-}
+    <div className="doctor-card">
+      <p>
+        {name} - {specialty}
+      </p>
+      <div className="btn-container">
+        <button type="button" onClick={() => onEdit(doctor)}>
+          Edit
+        </button>
+        <button type="button" onClick={() => onDelete(doctor._id)}>
+          Delete
+        </button>
+      </div>
+    </div>
+  );
+};
 
-export default DoctorCard
+export default DoctorCard;
