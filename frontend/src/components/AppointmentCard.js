@@ -1,9 +1,26 @@
-import React from 'react'
+import React from "react";
 
-function AppointmentCard() {
+const AppointmentCard = ({ appointment, onEdit, onDelete }) => {
   return (
-    <div>AppointmentCard</div>
-  )
-}
+    <div className="appointment-card">
+      <p>
+        <span>Patient: </span>
+        <span id="patientName"></span>
+      </p>
+      <p>
+        <span>Doctor: </span>
+        <span id="doctorName"></span>
+      </p>
+      <p>
+        <span>Date: </span>
+        <span id="date"></span>
+      </p>
+      <div className="btn-container">
+        <button onClick={onEdit(appointment)}>Edit</button>
+        <button onClick={onDelete(appointment._id)}>Delete</button>
+      </div>
+    </div>
+  );
+};
 
-export default AppointmentCard
+export default AppointmentCard;

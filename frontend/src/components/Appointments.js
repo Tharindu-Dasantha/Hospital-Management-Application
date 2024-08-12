@@ -11,7 +11,7 @@ const Appointments = () => {
     date: "",
   });
   const [selectedAppointment, setSelectedAppointment] = useState(null);
-  const [isEditing, setIsEditing] = useState(false);
+  const [isEditMode, setIsEditMode] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
@@ -71,20 +71,132 @@ const Appointments = () => {
         )
       );
 
-      alert("Failed to update appointment. Please try again.")
+      alert("Failed to update appointment. Please try again.");
     } finally {
-        setSelectedAppointment(null);
-        setIsEditing(false);
+      setSelectedAppointment(null);
+      setIsEditMode(false);
     }
   };
 
   // fuction to handle delete appointment
   const handleDeleteAppointment = async (id) => {
-    if(window.confirm("Are you sure you want to delete this appointment?")) {
-        a
+    if (window.confirm("Are you sure you want to delete this appointment?")) {
+      axios
+        .delete(`http://localhost:5000/appointments/delete/${id}`)
+        .then((response) => {
+          console.log(response.data);
+          setAppointments(
+            appointments.filter((appointment) => appointment._id !== id)
+          );
+        })
+        .catch((error) => {
+          console.log("Error deleting appointment: ", error);
+          alert("Failed to delete appointment. Please try again.");
+        });
     }
-  }
+  };
+
   // fuction to handle edit appointment
+  const handleEditAppointment = (appointment) => {
+    const appointmentCopy = JSON.parse(JSON.stringigy(appointment));
+    setSelectedAppointment(appointmentCopy);
+    setIsEditMode(true);
+  };
+
+  return (
+    <div className="flex-row" style={{ width: "100%" }}>
+      {isLoading ? (
+        <p>Loading Appointments...</p>
+      ) : (
+        <>
+          <div className="flex-column">
+            <div className="add-form">
+              <h4>
+                {isEditMode ? "Edit  Appointment" : "Add New Appointment"}
+              </h4>
+              <form className="appointment-form" onSubmit={handleAddAppontment}>
+                {/* form fields with validation */}
+                <label>Patient Name:</label>
+                <input
+                  type="text"
+                  value={
+                    isEditMode
+                      ? selectedAppointment.patientName
+                      : newAppointment.patientName
+                  }
+                  onChange={(e) => {
+                    isEditMode
+                      ? setSelectedAppointment({
+                          ...selectedAppointment,
+                          patientName: e.target.value,
+                        })
+                      : setNewAppointment({
+                          ...newAppointment,
+                          patientName: e.target.value,
+                        });
+                  }}
+                />
+                <label>Doctor Name:</label>
+                <input
+                  type="text"
+                  value={
+                    isEditMode
+                      ? selectedAppointment.doctorName
+                      : newAppointment.doctorName
+                  }
+                  onChange={(e) =>
+                    isEditMode
+                      ? setSelectedAppointment({
+                          ...selectedAppointment,
+                          doctorName: e.target.value,
+                        })
+                      : setNewAppointment({
+                          ...newAppointment,
+                          doctorName: e.target.value,
+                        })
+                  }
+                />
+                <label>Date:</label>
+                <input
+                  type="date"
+                  value={
+                    isEditMode ? selectedAppointment.date : newAppointment.date
+                  }
+                  onChange={(e) =>
+                    isEditMode
+                      ? setSelectedAppointment({
+                          ...selectedAppointment,
+                          date: e.target.value,
+                        })
+                      : setNewAppointment({
+                          ...newAppointment,
+                          date: e.target.value,
+                        })
+                  }
+                />
+                <button type="submit">
+                  {isEditMode ? "Update Appointment" : "Add Appointment"}
+                </button>
+              </form>
+            </div>
+          </div>
+          <div className="appointments">
+            <h3>Appointments ({appointments.length})</h3>
+            <div className="appointment-list">
+              {appointments.map((appointment) => (
+                <AppointmentCard
+                  key={appointment._id}
+                  appointment={appointment}
+                  onEdit={handleEditAppointment}
+                  onDelete={handleDeleteAppointment}
+                />
+              ))}
+            </div>
+          </div>
+        </>
+      )}
+    </div>
+  );
 };
 
 export default Appointments;
