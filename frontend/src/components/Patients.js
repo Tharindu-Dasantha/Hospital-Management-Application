@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import PatientCard from "./PatientCard";
 import "./Patient.css";
+import './main.css'
 
 const Patients = () => {
   const [patient, setPatient] = useState([]);
@@ -83,7 +84,7 @@ const Patients = () => {
         <form
           onSubmit={
             isEditMode
-              ? handleAddPatient.bind(null, selectedPatient._id)
+              ? handleUpdatePatient.bind(null, selectedPatient._id)
               : handleAddPatient
           }
         >

@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import AppointmentCard from "./AppointmentCard";
 import "./Appointment.css";
+import './main.css'
 
 const Appointments = () => {
   const [appointments, setAppointments] = useState([]);
@@ -104,7 +105,7 @@ const Appointments = () => {
   };
 
   return (
-    <div className="flex-row" style={{ width: "100%" }}>
+    <div className="main-container">
       {isLoading ? (
         <p>Loading Appointments...</p>
       ) : (
@@ -114,7 +115,7 @@ const Appointments = () => {
               <h4>
                 {isEditMode ? "Edit  Appointment" : "Add New Appointment"}
               </h4>
-              <form className="appointment-form" onSubmit={handleAddAppontment}>
+              <form className="appointment-form" onSubmit={isEditMode ? (e) => handleUpdateAppointment(selectedAppointment._id, e) : handleAddAppontment}>
                 {/* form fields with validation */}
                 <label>Patient Name:</label>
                 <input

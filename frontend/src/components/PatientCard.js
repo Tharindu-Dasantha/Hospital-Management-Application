@@ -2,7 +2,7 @@ import React from "react";
 
 const PatientCard = ({ patient, onEdit, onDelete }) => {
   return (
-    <div className="patient-card">
+    <div className="card">
       <h4>{patient.name}</h4>
       <p>Age: {patient.age}</p>
       <p>Gender: {patient.gender}</p>

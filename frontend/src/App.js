@@ -14,7 +14,7 @@ const App = () => {
   return (
     <Router>
       <div className="container">
-        <h1 className="app-title">GFG- Hospital Management App</h1>
+        <h1 className="app-title">Colombo National Hospital - Hospital Management App</h1>
         <nav>
           <ul>
             <li>

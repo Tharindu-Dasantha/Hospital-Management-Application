@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import DoctorCard from "./DoctorCard";
 import "./Doctor.css";
+import "./main.css"
 
 const Doctors = () => {
   const [doctors, setDoctors] = useState([]);

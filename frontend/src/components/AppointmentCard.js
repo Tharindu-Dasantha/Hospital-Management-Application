@@ -2,7 +2,7 @@ import React from "react";
 
 const AppointmentCard = ({ appointment, onEdit, onDelete }) => {
   return (
-    <div className="appointment-card">
+    <div className="card">
       <p>
         <span>Patient: </span>
         <span id="patientName"></span>

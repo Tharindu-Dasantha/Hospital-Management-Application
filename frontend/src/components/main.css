@@ -1,0 +1,65 @@
+/* General Styles */
+body {
+    margin: 0;
+    font-family: Montserrat, sans-serif;
+    background-color: #f0f0f0;
+}
+
+/* Reusable Components */
+.main-container {
+    border: none;
+    border-radius: 8px;
+    padding: 24px;
+    margin: 16px 0;
+    background-color: #fff;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease;
+    display: flex;
+    gap: 16px;
+
+    &:hover {
+        box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.15);
+    }
+}
+
+.card {
+    border-radius: 8px;
+    padding: 24px;
+    background-color: #fff;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+
+    &:hover {
+        box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.15);
+    }
+}
+
+.card-content {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 16px;
+    color: #666;
+}
+
+.card-title {
+    font-weight: bold;
+}
+
+button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 10px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+
+    &:hover {
+        background-color: #0056b3;
+
+    }
+}

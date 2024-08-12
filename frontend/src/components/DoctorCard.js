@@ -4,7 +4,7 @@ const DoctorCard = ({ doctor, onEdit, onDelete }) => {
   const { name, specialty } = doctor;
 
   return (
-    <div className="doctor-card">
+    <div className="card">
       <p>
         {name} - {specialty}
       </p>
