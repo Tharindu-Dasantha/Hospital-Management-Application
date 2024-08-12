@@ -3,7 +3,6 @@ import {
   BrowserRouter as Router,
   Routes,
   Route,
-  Link,
   NavLink
 } from 'react-router-dom';
 import Appointments from './components/Appointments';
